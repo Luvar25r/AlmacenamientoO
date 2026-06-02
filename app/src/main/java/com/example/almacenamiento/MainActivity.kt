@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
 
         val valpath: String = filesDir.absolutePath
         println("Ruta del almacenamiento privado: $valpath")
@@ -38,10 +40,14 @@ class MainActivity : AppCompatActivity() {
             println("Contenido del archivo:\n$text")
         }
 
-
         val arrayArchivos: Array<String> = fileList()
         arrayArchivos.forEach { archivo ->
             println("Archivo encontrado: $archivo")
         }
+
+        val cacheFile = File.createTempFile("session_tmp", ".dat", cacheDir)
+        cacheFile.writeText("ID_Sesion: 0x99283")
+        println("Archivo caché creado en: ${cacheFile.absolutePath}")
+        println("Contenido: ${cacheFile.readText()}")
     }
 }
