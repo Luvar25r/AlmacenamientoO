@@ -1,5 +1,6 @@
 package com.example.almacenamiento
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +21,16 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        // Actividad 1: Ruta del almacenamiento privado
         val valpath: String = filesDir.absolutePath
         println("Ruta del almacenamiento privado: $valpath")
+
+        // Actividad 2: Crear archivo de texto
+        val filename = "datos_usuario.txt"
+        val fileContents = "Puntaje: 1500\nNivel: 5"
+        openFileOutput(filename, Context.MODE_PRIVATE).use { output ->
+            output.write(fileContents.toByteArray())
+        }
+        println("Archivo '$filename' creado en: $valpath/$filename")
     }
 }
