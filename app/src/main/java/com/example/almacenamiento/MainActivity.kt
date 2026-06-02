@@ -32,5 +32,11 @@ class MainActivity : AppCompatActivity() {
             output.write(fileContents.toByteArray())
         }
         println("Archivo '$filename' creado en: $valpath/$filename")
+
+        // Actividad 3: Leer archivo de texto
+        openFileInput("datos_usuario.txt").bufferedReader().use { reader ->
+            val text = reader.readText()
+            println("Contenido del archivo:\n$text")
+        }
     }
 }
