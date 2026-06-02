@@ -21,11 +21,10 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Actividad 1: Ruta del almacenamiento privado
         val valpath: String = filesDir.absolutePath
         println("Ruta del almacenamiento privado: $valpath")
 
-        // Actividad 2: Crear archivo de texto
+
         val filename = "datos_usuario.txt"
         val fileContents = "Puntaje: 1500\nNivel: 5"
         openFileOutput(filename, Context.MODE_PRIVATE).use { output ->
@@ -33,10 +32,16 @@ class MainActivity : AppCompatActivity() {
         }
         println("Archivo '$filename' creado en: $valpath/$filename")
 
-        // Actividad 3: Leer archivo de texto
+
         openFileInput("datos_usuario.txt").bufferedReader().use { reader ->
             val text = reader.readText()
             println("Contenido del archivo:\n$text")
+        }
+
+
+        val arrayArchivos: Array<String> = fileList()
+        arrayArchivos.forEach { archivo ->
+            println("Archivo encontrado: $archivo")
         }
     }
 }
